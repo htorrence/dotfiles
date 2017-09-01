@@ -1,0 +1,35 @@
+[user]
+    name = Hanna Torrence
+    email = hanna.torrence@gmail.com
+
+[core]
+    editor = em
+
+[push]
+    default = current
+
+[color]
+    ui = true
+
+[color "branch"]
+    current = green
+        local = yellow
+	    remote = blue
+
+[color "diff"]
+    meta = yellow bold
+        frag = magenta bold
+	    old = red bold
+	        new = green bold
+
+[color "status"]
+    added = yellow
+        changed = green
+	    untracked = red
+
+[alias]
+    aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
+    unstage = reset HEAD --
+    brd = branch -D
+    
+
