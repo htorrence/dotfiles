@@ -1,5 +1,6 @@
 #!/bin/bash
 
-sudo apt-get install emacs
-
+sudo yum install emacs
+rm .bash_profile
+rm .bashrc
 ./dotfiles/install.sh
