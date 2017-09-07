@@ -1,13 +1,17 @@
+(add-to-list 'load-path "~/dotfiles/emacs.d/lisp")
+
 ;; VISUALS ;;
 (transient-mark-mode 1) ; makes the region visible
 (column-number-mode 1)  ; makes the column number show up
+
+(require 'linum)
 (global-linum-mode 1)   ; show line numbers
 (show-paren-mode 1)
 (menu-bar-mode 0)
-(setq linum-format "%4d \u2502 ") ; seperate line numbers with bar
+(setq linum-format "%d \u2502 ") ; seperate line numbers with bar
 (setq mac-option-key-is-meta nil)
-(setq mac-command-key-is-meta 1)
-(setq mac-command-modifier 'meta)
+;;(setq mac-command-key-is-meta 1)
+;;(setq mac-command-modifier 'meta)
 (setq mac-option-modifier nil)
 
 ;; NAVIGATION ;;

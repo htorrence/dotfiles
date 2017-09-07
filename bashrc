@@ -1,5 +1,5 @@
 #### ALIASES ####
-alias em='/Applications/Emacs.app/Contents/MacOS/Emacs -nw'
+alias em='/usr/bin/emacs -nw'
 alias ls='ls -F '
 alias ll='ls -alhs'
 alias lr='ls -ltur'
