@@ -16,6 +16,8 @@ s() { # do sudo, or sudo the last command if no argument given
 	sudo "$@"
     fi
 }
+
+title() { echo -ne "\033]0;"$*"\007";}
 #### VARIABLES ####
 export EDITOR=em
 export HISTCONTROL=ignoredups

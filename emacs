@@ -1,6 +1,17 @@
 (add-to-list 'load-path "~/dotfiles/emacs.d/lisp")
+(add-to-list 'load-path "~/dotfiles/emacs.d/color-theme-6.6.0")
 
 ;; VISUALS ;;
+(require 'ring+)
+(require 'doremi)
+(require 'doremi-cmd)
+(require 'color-theme) 
+(setq my-color-themes (list 'color-theme-billw 'color-theme-jsc-dark 
+                              'color-theme-sitaramv-solaris 'color-theme-resolve
+                              'color-theme-classic 'color-theme-jonadabian-slate
+                              'color-theme-kingsajz 'color-theme-shaman
+                              'color-theme-subtle-blue 'color-theme-snowish
+                              'color-theme-sitaramv-nt 'color-theme-wheat))
 (transient-mark-mode 1) ; makes the region visible
 (column-number-mode 1)  ; makes the column number show up
 
