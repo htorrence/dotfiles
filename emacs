@@ -18,6 +18,7 @@
 (require 'linum)
 (global-linum-mode 1)   ; show line numbers
 (show-paren-mode 1)
+(delete-selection-mode 1)
 (menu-bar-mode 0)
 (setq linum-format "%d \u2502 ") ; seperate line numbers with bar
 (setq mac-option-key-is-meta nil)
@@ -35,6 +36,11 @@
 (add-to-list 'load-path "~/lua-mode")
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 (add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+
+
+
+
+
 (add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
 
 ;; BACKUPS ;;

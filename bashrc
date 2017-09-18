@@ -5,6 +5,7 @@ alias ll='ls -alhs'
 alias lr='ls -ltur'
 alias l.='ls -d .*'
 alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
+alias py3='source ~/virtualenv/py3/bin/activate'
 
 #### FUNCTIONS ####
 up() { cd $(eval printf '../'%.0s {1..$1}) && pwd;}
