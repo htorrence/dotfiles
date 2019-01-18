@@ -1,51 +1,36 @@
-(add-to-list 'load-path "~/dotfiles/emacs.d/lisp")
-(add-to-list 'load-path "~/dotfiles/emacs.d/color-theme-6.6.0")
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+(package-initialize)
+(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; VISUALS ;;
-;;(require 'ring+)
-;;(require 'doremi)
-;;(require 'doremi-cmd)
-;;(require 'color-theme) 
-;;(setq my-color-themes (list 'color-theme-billw 'color-theme-jsc-dark 
-;;                              'color-theme-sitaramv-solaris 'color-theme-resolve
-;;                              'color-theme-classic 'color-theme-jonadabian-slate
-;;                              'color-theme-kingsajz 'color-theme-shaman
-;;                              'color-theme-subtle-blue 'color-theme-snowish
-;;                              'color-theme-sitaramv-nt 'color-theme-wheat))
-(transient-mark-mode 1) ; makes the region visible
-(column-number-mode 1)  ; makes the column number show up
-
+(transient-mark-mode 1)            ; makes the region visible
+(column-number-mode 1)             ; makes the column number show up
 (require 'linum)
-(global-linum-mode 1)   ; show line numbers
-(show-paren-mode 1)
-(delete-selection-mode 1)
-(menu-bar-mode 0)
-(setq linum-format "%d \u2502 ") ; seperate line numbers with bar
-(setq mac-option-key-is-meta nil)
-;;(setq mac-command-key-is-meta 1)
-;;(setq mac-command-modifier 'meta)
-(setq mac-option-modifier nil)
+(global-linum-mode 1)              ; show line numbers
+(show-paren-mode 1)                ; show parentheses pairs
+(delete-selection-mode 1)          ; enable delete selection with delete key
+(menu-bar-mode 0)                  ; remove menu bar
+(setq linum-format "%4d \u2502 ")  ; separate line numbers with bar
+
 
 ;; NAVIGATION ;;
-;; (add-to-list 'load-path "~/.emacs.d/lisp")
-;; (require 'no-easy-keys)
-;; (no-easy-keys 1)
-(setq scroll-conservatively 10000)
+(setq scroll-conservatively 10000) ; fix scroll speed
+(setq mac-option-key-is-meta nil)  ; use esc as meta key
+(setq mac-option-modifier nil)
 
-;; LUA ;;
-(add-to-list 'load-path "~/lua-mode")
-(autoload 'lua-mode "lua-mode" "Lua editing mode." t)
-(add-to-list 'auto-mode-alist '("\\.lua$" . lua-mode))
+;; GROOVY ;;
+(require 'groovy-mode)
+(add-to-list 'auto-mode-alist '("\\Jenkinsfile\\'" . groovy-mode))
 
-
-
-
-
-(add-to-list 'interpreter-mode-alist '("lua" . lua-mode))
+;; JAVASCRIPT ;;
+(add-hook 'js-mode-hook #'js-auto-format-mode)
 
 ;; BACKUPS ;;
 ;; Default and per-save backups go here:
 (setq backup-directory-alist '(("" . "~/.emacs.d/backup/per-save")))
+(setq auto-save-file-name-transforms `((".*" , "~/.emacs.d/backup/auto-save" t)))
 
 (defun force-backup-of-buffer ()
   ;; Make a special "per session" backup at the first save of each
@@ -67,3 +52,19 @@
 (defalias 'r 'replace-string)
 (defalias '/ 'comment-region)
 (defalias '// 'uncomment-region)
+(defalias 'i 'indent-code-rigidly)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (flycheck-apertium js-auto-format-mode groovy-mode dash))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+(put 'upcase-region 'disabled nil)
