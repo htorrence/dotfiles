@@ -3,7 +3,7 @@
     email = hanna.torrence@gmail.com
 
 [core]
-    editor = em
+    editor = emacs
 
 [push]
     default = current
