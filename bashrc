@@ -30,6 +30,13 @@ title() { echo -ne "\033]0;"$*"\007";}
 
 srclone() { git clone https://github.com/ShopRunner/$1.git;}
 
+lib_replace() {
+    make wheel;
+    dbfs rm dbfs:/our_libraries/$1;
+    dbfs cp dist/$1 dbfs:/our_libraries/$1;
+    echo $1 replaced in dbfs
+}
+
 #### VARIABLES ####
 export EDITOR=em
 export HISTCONTROL=ignoredups
