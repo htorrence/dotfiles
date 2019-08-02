@@ -1,5 +1,5 @@
 #### ALIASES ####
-alias em="/usr/local/Cellar/emacs/26.1_1/Emacs.app/Contents/MacOS/Emacs -nw"
+alias em=emacs
 alias ls='ls -F '
 alias ll='ls -alhs'
 alias lr='ls -ltur'
