@@ -1,7 +1,35 @@
+;; PACKAGE INSTALLS ;;
+
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+
+(setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
+                         ("marmalade" . "https://marmalade-repo.org/packages/")
+			 ("melpa_stable" . "https://stable.melpa.org/packages/")
+			 ("org" . "https://orgmode.org/elpa/")))
+
+
+(setq package-archive-priorities '(("melpa stable" . 10)
+                   ("gnu" . 5)
+                   ("org" . 2)
+                   ("marmalade" . 0)
+                   ))
+
 (package-initialize)
+
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+(setq my-packages
+      '(flycheck
+        js-auto-format-mode
+        groovy-mode))
+
+(dolist (pkg my-packages)
+  (unless (package-installed-p pkg)
+    (package-install pkg)))
+
+
+
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; VISUALS ;;
@@ -22,7 +50,7 @@
 
 ;; GROOVY ;;
 (require 'groovy-mode)
-(add-to-list 'auto-mode-alist '("\\Jenkinsfile\\'" . groovy-mode))
+(add-to-list 'auto-mode-alist '("\\Jenkins\\'" . groovy-mode))
 
 ;; JAVASCRIPT ;;
 (add-hook 'js-mode-hook #'js-auto-format-mode)
