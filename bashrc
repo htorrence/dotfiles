@@ -13,7 +13,9 @@ alias dockerstop='docker stop $(docker ps -aq)'
 alias clean_branches='git branch | grep -v "master" | xargs git branch -d'
 
 #### PYTHON PATH ####
-export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+export PATH="/home/ec2-user/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 
 #### FUNCTIONS ####
 up() { cd $(eval printf '../'%.0s {1..$1}) && pwd;}

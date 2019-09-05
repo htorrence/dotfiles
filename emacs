@@ -20,9 +20,10 @@
   (package-refresh-contents))
 
 (setq my-packages
-      '(flycheck
-        js-auto-format-mode
-        groovy-mode))
+      '(js-auto-format-mode
+        groovy-mode
+	python-pylint
+	flycheck))
 
 (dolist (pkg my-packages)
   (unless (package-installed-p pkg)
