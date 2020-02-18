@@ -5,15 +5,12 @@ alias ll='ls -alhs'
 alias lr='ls -ltur'
 alias l.='ls -d .*'
 alias folders='find . -maxdepth 1 -type d -print0 | xargs -0 du -sk | sort -rn'
-alias py3='source ~/virtualenv/py3/bin/activate'
-alias py2='source ~/virtualenv/py2/bin/activate'
-alias py='source venv/bin/activate'
 alias make_kernel='pip install ipykernel; ipython kernel install --user --name=${PWD##*/}'
 alias dockerstop='docker stop $(docker ps -aq)'
 alias clean_branches='git branch | grep -v "master" | xargs git branch -d'
 
 #### PYTHON PATH ####
-export PATH="/home/ec2-user/.pyenv/bin:$PATH"
+export PATH="/home/ubuntu/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 

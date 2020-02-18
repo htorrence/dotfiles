@@ -1,7 +1,7 @@
 ;; PACKAGE INSTALLS ;;
 
 (require 'package)
-
+(require 'cl)
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
 			 ("melpa_stable" . "https://stable.melpa.org/packages/")
