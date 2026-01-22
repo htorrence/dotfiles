@@ -1,0 +1,31 @@
+*.python-version
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Direnv
+.direnv/
+
+# Backup files
+*~
+*.bak
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# IDEs
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace

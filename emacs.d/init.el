@@ -1,31 +1,65 @@
+;; #### Melpa Package Support ####
+
 (require 'package)
+
+;; Adds the Melpa archive to the list of available repositories
 (add-to-list 'package-archives
-             '("melpa-stable" . "https://stable.melpa.org/packages/") t)
+             '("melpa" . "http://melpa.org/packages/") t)
+
+
+;; Initializes the package infrastructure
 (package-initialize)
-(add-hook 'after-init-hook #'global-flycheck-mode)
+
+
+;; If there are no archived package contents, refresh them
+(when (not package-archive-contents)
+  (package-refresh-contents))
+
+;; MyPackages contains a list of package names
+(defvar myPackages
+  '(better-defaults                 ;; Set up some better Emacs defaults
+    material-theme                  ;; Theme
+    nordic-night-theme
+    eglot
+    )
+  )
+
+
+;; Scans the list in myPackages
+;; If the package listed is not already installed, install it
+(mapc #'(lambda (package)
+          (unless (package-installed-p package)
+            (package-install package)))
+      myPackages)
+
+
+;; User Customizations:
+
 
 ;; VISUALS ;;
+(load-theme 'nordic-night t)       ; Load theme
 (transient-mark-mode 1)            ; makes the region visible
 (column-number-mode 1)             ; makes the column number show up
-(require 'linum)
-(global-linum-mode 1)              ; show line numbers
 (show-paren-mode 1)                ; show parentheses pairs
 (delete-selection-mode 1)          ; enable delete selection with delete key
 (menu-bar-mode 0)                  ; remove menu bar
-(setq linum-format "%4d \u2502 ")  ; separate line numbers with bar
-
+(global-display-line-numbers-mode)
 
 ;; NAVIGATION ;;
 (setq scroll-conservatively 10000) ; fix scroll speed
 (setq mac-option-key-is-meta nil)  ; use esc as meta key
 (setq mac-option-modifier nil)
 
-;; GROOVY ;;
-(require 'groovy-mode)
-(add-to-list 'auto-mode-alist '("\\Jenkinsfile\\'" . groovy-mode))
+;; PYTHON LINTING ;;
+(add-hook 'python-mode-hook 'eglot-ensure)
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               '(python-mode . ("ruff" "server")))
+  (add-hook 'after-save-hook 'eglot-format))
 
-;; JAVASCRIPT ;;
-(add-hook 'js-mode-hook #'js-auto-format-mode)
+;; JS CONFIG ;;
+(setq js-indent-level 2)
+
 
 ;; BACKUPS ;;
 ;; Default and per-save backups go here:
@@ -53,18 +87,17 @@
 (defalias '/ 'comment-region)
 (defalias '// 'uncomment-region)
 (defalias 'i 'indent-code-rigidly)
+(put 'upcase-region 'disabled nil)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (flycheck-apertium js-auto-format-mode groovy-mode dash))))
+   '(nordic-night-theme ruff-format material-theme eglot better-defaults)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(put 'upcase-region 'disabled nil)

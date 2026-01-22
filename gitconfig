@@ -4,32 +4,53 @@
 
 [core]
     editor = emacs
+    excludesFile = ~/.gitignore
 
 [push]
     default = current
+    autoSetupRemote = true
+    followTags = true
+
+[init]
+    defaultBranch = main
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+[help]
+    autocorrect = 1
+
+[branch]
+    sort = -committerdate
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
 
 [color]
     ui = true
 
 [color "branch"]
     current = green
-        local = yellow
-	    remote = blue
+    local = yellow
+    remote = blue
 
 [color "diff"]
     meta = yellow bold
-        frag = magenta bold
-	    old = red bold
-	        new = green bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
 
 [color "status"]
     added = yellow
-        changed = green
-	    untracked = red
+    changed = green
+    untracked = red
 
 [alias]
     aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
     unstage = reset HEAD --
     brd = branch -D
-    
-
